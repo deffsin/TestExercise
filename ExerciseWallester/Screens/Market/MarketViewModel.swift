@@ -14,7 +14,7 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
     @Published var sortedCoins: [CoinModel] = [] // coins sorted according to the selected sort option
     @Published var selectedCoin: CoinModel?
     @Published var sparklineIn7D: [Double] = []
-    
+
     @Published var isLoading = false
     @Published var errorMessage: String? = nil
     @Published var sortOption: SortOption = .rank
@@ -27,18 +27,18 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
     private var locationManager = LocationManager()
     private var currencyService = CurrencyService.shared
     private var timer: AnyCancellable?
-    
+
     init() {
         isLoading = true
         setupLocationManager()
         subscribers()
     }
-    
+
     func subscribers() {
         subscribeToSortedCoinsUpdates()
         initializeDataFetchTimer()
     }
-    
+
     func initializeDataFetchTimer() {
         timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
             .sink { [weak self] _ in
@@ -46,7 +46,7 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
             }
         cancellables.insert(timer!)
     }
-    
+
     func subscribeToSortedCoinsUpdates() {
         Publishers.CombineLatest($allCoins, $sortOption)
             .map { coins, sortOption in
@@ -62,10 +62,10 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
-                case .failure(let error):
+                case let .failure(error):
                     print("Error fetching data, trying cached data: \(error)")
                     self?.fetchCachedCryptoCurrencies(usingCurrencyCode: self?.currencyCode ?? "usd")
-                    
+
                 case .finished:
                     print("Finished fetching crypto data")
                     self?.isLoading = false
@@ -82,9 +82,9 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                case .failure(let error):
+                case let .failure(error):
                     print("Failed to fetch cached data: \(error)")
-                    
+
                 case .finished:
                     print("Finished fetching cached crypto data")
                     self.isLoading = false
@@ -95,25 +95,25 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
             })
             .store(in: &cancellables)
     }
-    
+
     func setupLocationManager() {
         locationManager.currency = { [weak self] currencyCode in
             self?.fetchCryptoCurrencies(usingCurrencyCode: currencyCode)
-            
+
             if let symbol = self?.currencyService.getCurrencySymbol(for: currencyCode) {
                 self?.currencyCode = currencyCode
                 self?.currencySymbol = symbol
-                
+
             } else {
                 self?.currencySymbol = "$"
             }
         }
         locationManager.requestLocationAccess()
         locationManager.startUpdatingLocation()
-        
+
         fetchDataIfLocationUnavailable()
     }
-    
+
     // esli net dannqh o location, vse ravno vqzavaem
     func fetchDataIfLocationUnavailable() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
@@ -123,7 +123,7 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
             }
         }
     }
-    
+
     func selectCoin(_ coin: CoinModel) {
         selectedCoin = coin
         navigateToDetailPage = true

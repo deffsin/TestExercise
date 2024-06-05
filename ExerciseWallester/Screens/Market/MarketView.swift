@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MarketView: View {
-  @StateObject var viewModel = MarketViewModel()
+    @StateObject var viewModel = MarketViewModel()
 
     var body: some View {
         NavigationStack {
@@ -23,5 +23,5 @@ struct MarketView: View {
 }
 
 #Preview {
-  MarketView()
+    MarketView()
 }

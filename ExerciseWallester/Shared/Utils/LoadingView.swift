@@ -12,7 +12,7 @@ struct LoadingView: View {
         ZStack {
             Color.white.opacity(0.4)
                 .ignoresSafeArea(.all)
-            
+
             ProgressView("Loading...")
                 .progressViewStyle(.circular)
         }

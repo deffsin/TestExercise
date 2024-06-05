@@ -9,12 +9,12 @@ import SwiftUI
 
 struct LineGraph: Shape {
     var dataPoints: [Double]
-    
+
     func path(in rect: CGRect) -> Path {
         var path = Path()
 
         guard dataPoints.count > 1 else { return path }
-        
+
         let maxValue = dataPoints.max() ?? 0
         let minValue = dataPoints.min() ?? 0
 

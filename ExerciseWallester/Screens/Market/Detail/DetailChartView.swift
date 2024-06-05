@@ -9,31 +9,32 @@ import SwiftUI
 
 struct DetailChartView: View {
     @ObservedObject var viewModel: DetailViewModel
-    
+
     @State private var selectedButton: String = "24h"
-    
+
     var data: [Double]
     var priceHigher: Double {
         let maxPrice = data.max() ?? 0
         let range = (data.max() ?? 0) - (data.min() ?? 0)
         let step = range / 8
-        
+
         return maxPrice + step
     }
+
     var priceLower: Double {
         let minPrice = data.min() ?? 0
         let range = (data.max() ?? 0) - (data.min() ?? 0)
         let step = range / 8
-        
+
         return minPrice - step
     }
-    
+
     var body: some View {
         ZStack {
             buildMainContent()
         }
     }
-    
+
     @ViewBuilder
     func buildMainContent() -> some View {
         HStack {
@@ -46,21 +47,21 @@ struct DetailChartView: View {
             }
         }
     }
-    
+
     func textHeader() -> some View {
         VStack {
             Text("\(viewModel.name) Price Chart (\(viewModel.coinSymbol))")
                 .font(.fontSemiBoldUltraSmall)
         }
     }
-    
+
     func chartSegmentedView(selectedButton: Binding<String>) -> some View {
         let buttons = [
             ("24h", "1"),
             ("7d", "7"),
             ("1m", "30"),
             ("3m", "90"),
-            ("Max", "max")
+            ("Max", "max"),
         ]
 
         return ZStack {
@@ -75,13 +76,17 @@ struct DetailChartView: View {
         .background(Color.blue.opacity(0.1))
         .cornerRadius(10)
     }
-    
+
     func chartButton(label: String, timeframe: String, selectedButton: Binding<String>) -> some View {
         Button(action: {
             withAnimation(.bouncy(duration: 1.0)) {
                 selectedButton.wrappedValue = label
                 viewModel.timeframe = timeframe
-                viewModel.fetchCryptoHistoricalChartData(id: viewModel.id, currencyCode: viewModel.currencyCode, timeframe: timeframe)
+                viewModel.fetchCryptoHistoricalChartData(
+                    id: viewModel.id,
+                    currencyCode: viewModel.currencyCode,
+                    timeframe: timeframe
+                )
             }
         }) {
             Text(label)
@@ -92,7 +97,7 @@ struct DetailChartView: View {
                 .cornerRadius(5)
         }
     }
-    
+
     func chartView() -> some View {
         ZStack {
             HStack {
@@ -101,13 +106,13 @@ struct DetailChartView: View {
                         .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
                         .frame(maxHeight: 350)
                         .padding(.trailing, 72)
-                    
+
                 } else {
                     Text("No historical chart data available")
                         .frame(width: 140)
                 }
             }
-            
+
             VStack(alignment: .leading, spacing: 52) {
                 HStack {
                     ZStack {
@@ -116,7 +121,7 @@ struct DetailChartView: View {
                     Text("\(priceHigher.formatNumber)")
                         .frame(maxWidth: 60)
                 }
-                
+
                 ForEach(pricesToShow(), id: \.self) { price in
                     HStack {
                         ZStack {
@@ -126,7 +131,7 @@ struct DetailChartView: View {
                             .frame(maxWidth: 60)
                     }
                 }
-                
+
                 HStack {
                     ZStack {
                         Divider()
@@ -142,13 +147,13 @@ struct DetailChartView: View {
         }
         .frame(maxHeight: 350)
     }
-    
+
     func pricesToShow() -> [Double] {
         let maxPrice = data.max() ?? 0
         let minPrice = data.min() ?? 0
         let range = maxPrice - minPrice
         let step = range / 5
-        
+
         return stride(from: maxPrice, through: minPrice, by: -step).map { $0 }
     }
 }

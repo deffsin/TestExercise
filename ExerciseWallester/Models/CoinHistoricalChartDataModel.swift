@@ -9,7 +9,7 @@ import Foundation
 
 struct CoinHistoricalChartDataModel: Codable {
     let prices: [[Double]]
-    
+
     enum CodingKeys: String, CodingKey {
         case prices
     }

@@ -10,7 +10,7 @@ import SwiftUI
 enum AppFont {
     case semiBold
     case regular
-    
+
     func font(size: CGFloat) -> Font {
         switch self {
         case .semiBold:
@@ -18,7 +18,7 @@ enum AppFont {
                 return Font(customFont)
             }
             return Font.system(size: size, weight: .semibold, design: .default)
-            
+
         case .regular:
             if let customFont = UIFont(name: "Poppins-Regular", size: size) {
                 return Font(customFont)

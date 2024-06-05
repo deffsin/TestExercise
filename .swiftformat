@@ -1,0 +1,15 @@
+# maximum width of a line before it wraps
+--maxwidth 120
+
+# number of spaces to use for indentation
+--indent 4
+
+# tab width
+--tabwidth 4
+
+# disable specific rules
+--disable blankLinesAtStartOfScope, blankLinesAtEndOfScope
+
+# enable specific rules
+--enable hoistPatternLet
+

@@ -1,5 +1,5 @@
 //
-//  SortOption.swift
+//  SortOption+enum.swift
 //  CoinGekoWallester
 //
 //  Created by Denis Sinitsa on 24.05.2024.

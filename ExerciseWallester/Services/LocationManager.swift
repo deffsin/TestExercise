@@ -11,7 +11,7 @@ import Foundation
 class LocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
-    
+
     var currency: ((String) -> Void)?
 
     override init() {
@@ -28,14 +28,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            locationManager.stopUpdatingLocation()  // dlja sohranenija battery
+            locationManager.stopUpdatingLocation() // dlja sohranenija battery
             determineCurrency(location: location)
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
     }
 
@@ -46,7 +46,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 self?.currency?("usd")
                 return
             }
-            
+
             if let placemark = placemarks?.first, let countryCode = placemark.isoCountryCode {
                 self?.fetchCurrencyCode(for: countryCode)
             } else {

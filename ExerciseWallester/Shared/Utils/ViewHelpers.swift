@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ViewHelpers {
+enum ViewHelpers {
     static func customDivider() -> some View {
         ZStack {
             Divider()
@@ -19,7 +19,7 @@ struct ViewHelpers {
     static func priceChangeView(priceChange: Double?) -> some View {
         let absoluteChange = abs(priceChange ?? 0)
         let displayChange = String(format: "%.2f%%", absoluteChange)
-        
+
         return Text(displayChange)
             .foregroundColor(getColorForPercentage(priceChange))
             .font(.fontRegularUltraSmall)
