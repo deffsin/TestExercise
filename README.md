@@ -17,7 +17,7 @@ An app for tracking cryptocurrencies using CoinGecko API. It includes 2 screens:
 - REST requests ✅
 - Caching(if possible) ✅
 - SwiftLint, SwiftFormat ✅
-- SwiftUI
+- SwiftUI ✅
 
 # Listing/Market
 - Icon ✅
