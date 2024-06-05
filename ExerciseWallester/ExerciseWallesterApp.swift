@@ -11,7 +11,7 @@ import SwiftUI
 struct ExerciseWallesterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MarketView(viewModel: MarketViewModel())
         }
     }
 }
