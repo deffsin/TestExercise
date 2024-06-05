@@ -63,5 +63,6 @@ LINK to the second repository that is not deleted accidentally: https://github.c
 
 LINK to the screenshot: https://imgur.com/a/Jtm6ld3 ⚡️⚡️⚡️⚡️⚡️⚡️
 
+There are no memory leaks. I didn’t write UNIT tests because they were not mentioned in the requirements. I just added more than needed and then removed almost everything except filtering.
 It would be best to add SwiftFormat and SwiftLint at the  beginning of the project setup, but since I have a very strange mac where everything works quite strange, I couldn't do it initially because nothing was setting up properly and it was throwing errors. 
  I used Xcode for commits(I did it before), but I had to recreate the repositories about 5 times because everything broke during any commits. After that I switched to SourceTree which turned out to be much easier than i thought before.
