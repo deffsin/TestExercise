@@ -339,7 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Checking for SwiftLint at: $(which swiftlint)\"\nif [ -x \"$(which swiftlint)\" ]; then\n  echo \"Running SwiftLint from $(which swiftlink)\"\n  $(which swiftlint)\nelse\n  echo \"SwiftLint is not installed, download from: https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		15BFF5FD2C10BBC10014B668 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;

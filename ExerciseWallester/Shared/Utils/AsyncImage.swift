@@ -66,7 +66,7 @@ private class ImageLoader: ObservableObject {
             return
         }
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, response, _ in
             if let data = data, let response = response, let image = UIImage(data: data) {
                 let cachedResponse = CachedURLResponse(response: response, data: data)
                 cache.storeCachedResponse(cachedResponse, for: request)

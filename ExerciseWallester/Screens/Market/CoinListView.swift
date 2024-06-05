@@ -130,7 +130,6 @@ struct CoinListView: View {
         }
         .frame(maxWidth: maxWidth, alignment: .trailing)
     }
-
     
     private func leftSide(rank: Int, image: String, name: String, symbol: String, coinModel: CoinModel) -> some View {
         HStack(spacing: 1) {
@@ -158,7 +157,7 @@ struct CoinListView: View {
             .padding(.vertical, 20)
             .padding(.leading, 10)
             .onTapGesture {
-                withAnimation(.easeIn(duration: 2)){
+                withAnimation(.easeIn(duration: 2)) {
                     viewModel.selectCoin(coinModel)
                 }
             }

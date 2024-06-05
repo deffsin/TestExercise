@@ -63,7 +63,7 @@ struct DetailView: View {
             HStack(spacing: 5) {
                 AsyncImage(url: URL(string: image)!)
                     .frame(width: 20, height: 20)
-                
+
                 VStack(alignment: .leading) {
                     Text(symbol.uppercased())
                         .font(.fontSemiBoldSmall)
