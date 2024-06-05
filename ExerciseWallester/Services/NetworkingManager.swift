@@ -27,7 +27,7 @@ class NetworkingManager {
 
     private static let cache = URLCache(
         memoryCapacity: 500 * 1024 * 1024, diskCapacity: 1 * 1024 * 1024 * 1024,
-        diskPath: "coinGeckoCache"
+        diskPath: "exerciseWallester"
     )
 
     static func download(url: URL, forceUpdate: Bool = false) -> AnyPublisher<Data, Error> {
