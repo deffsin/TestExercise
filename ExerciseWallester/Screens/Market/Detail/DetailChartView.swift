@@ -118,7 +118,7 @@ struct DetailChartView: View {
                     ZStack {
                         Divider()
                     }
-                    Text("\(priceHigher.formatNumber)")
+                    Text("\(priceHigher.formattedForDetailChart)")
                         .frame(maxWidth: 60)
                 }
 
@@ -127,7 +127,7 @@ struct DetailChartView: View {
                         ZStack {
                             Divider()
                         }
-                        Text("\(price.formatNumber)")
+                        Text("\(price.formattedForDetailChart)")
                             .frame(maxWidth: 60)
                     }
                 }
@@ -136,7 +136,7 @@ struct DetailChartView: View {
                     ZStack {
                         Divider()
                     }
-                    Text("\(priceLower.formatNumber)")
+                    Text("\(priceLower.formattedForDetailChart)")
                         .frame(maxWidth: 60)
                 }
             }

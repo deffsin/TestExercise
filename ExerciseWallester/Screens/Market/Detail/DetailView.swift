@@ -104,7 +104,7 @@ struct DetailView: View {
             }
 
             HStack {
-                Text("\(viewModel.currencySymbol)\(price.customFormatted)")
+                Text("\(viewModel.currencySymbol)\(viewModel.localeService.formatNumber(price))")
                     .frame(minWidth: 25, alignment: .leading)
                     .font(.fontSemiBoldLarge)
 
@@ -151,7 +151,7 @@ struct DetailView: View {
             .padding(.vertical, 5)
 
             HStack {
-                Text("\(viewModel.currencySymbol)\(price.customFormatted)")
+                Text("\(viewModel.currencySymbol)\(viewModel.localeService.formatNumber(price))")
                     .frame(minWidth: 25, alignment: .leading)
                     .font(.fontSemiBoldSmall)
 
@@ -219,7 +219,7 @@ struct DetailView: View {
 
                 Spacer()
 
-                Text("\(currencyCode) \(value.customFormatted)")
+                Text("\(currencyCode) \(viewModel.localeService.formatNumber(value))")
                     .font(.fontRegularSmall)
             }
             .frame(height: 30)

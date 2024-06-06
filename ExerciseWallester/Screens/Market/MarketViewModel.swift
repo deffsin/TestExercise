@@ -27,6 +27,7 @@ class MarketViewModel: ObservableObject, MarketCryptoCurrencyProtocol, TimerProt
     private var locationManager = LocationManager()
     private var currencyService = CurrencyService.shared
     private var timer: AnyCancellable?
+    var localeService = LocaleService.shared
 
     init() {
         isLoading = true

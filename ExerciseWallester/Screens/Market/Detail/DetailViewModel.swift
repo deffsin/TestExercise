@@ -23,6 +23,7 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
     private var cancellables = Set<AnyCancellable>()
     private var currencyService = CurrencyService.shared
     private var timer: AnyCancellable?
+    var localeService = LocaleService.shared
 
     init(id: String, name: String, currencyCode: String, currencySymbol: String, coinSymbol: String) {
         self.id = id

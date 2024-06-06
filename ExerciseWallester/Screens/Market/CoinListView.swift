@@ -10,7 +10,7 @@ import SwiftUI
 struct CoinListView: View {
     @ObservedObject var viewModel: MarketViewModel
     @State private var rowHeights: [String: CGFloat] = [:]
-
+    
     typealias helpers = ViewHelpers
 
     var body: some View {
@@ -250,7 +250,7 @@ struct CoinListView: View {
     ) -> some View {
         HStack(spacing: 5) {
             VStack {
-                Text("\(viewModel.currencySymbol!) \(currentPrice.customFormatted)")
+                Text("\(viewModel.currencySymbol ?? "usd") \(viewModel.localeService.formatNumber(currentPrice))")
                     .font(.fontRegularUltraSmall)
             }
             .frame(maxWidth: 105, alignment: .trailing)
@@ -263,11 +263,11 @@ struct CoinListView: View {
             .frame(width: 255, alignment: .trailing)
             .padding(.leading, 10)
 
-            Text("\(viewModel.currencySymbol!) \(volume24h.customFormatted)")
+            Text("\(viewModel.currencySymbol!) \(viewModel.localeService.formatNumber(volume24h))")
                 .font(.fontRegularUltraSmall)
                 .frame(maxWidth: 160, alignment: .trailing)
 
-            Text("\(viewModel.currencySymbol!) \(marketCap.customFormatted)")
+            Text("\(viewModel.currencySymbol!) \(viewModel.localeService.formatNumber(marketCap))")
                 .font(.fontRegularUltraSmall)
                 .frame(maxWidth: 180, alignment: .trailing)
 
