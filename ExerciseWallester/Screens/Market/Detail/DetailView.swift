@@ -87,7 +87,7 @@ struct DetailView: View {
                 }
 
                 HStack(spacing: 10) {
-                    Text("\(symbol.uppercased()) Price")
+                    Text("\(symbol.uppercased()) \(viewModel.localeService.localizedString(forKey: "price"))")
                         .font(.fontRegularUltraSmall)
                         .frame(minWidth: 45, alignment: .leading)
                         .opacity(0.7)
@@ -170,7 +170,7 @@ struct DetailView: View {
     func coinStatistics() -> some View {
         VStack {
             HStack {
-                Text("\(viewModel.name) Statistics")
+                Text("\(viewModel.name) \(viewModel.localeService.localizedString(forKey: "statistics"))")
                     .font(.fontSemiBoldLarge)
 
                 Spacer()
@@ -179,31 +179,31 @@ struct DetailView: View {
             Divider()
 
             statisticsField(
-                text: "Market Cap",
+                text: viewModel.localeService.localizedString(forKey: "marketCap"),
                 currencyCode: viewModel.currencySymbol,
                 value: viewModel.coinDetailData?.marketData.marketCap[viewModel.currencyCode] ?? 0.0
             )
 
             statisticsField(
-                text: "Total Volume",
+                text: viewModel.localeService.localizedString(forKey: "volume24h"),
                 currencyCode: viewModel.currencySymbol,
                 value: viewModel.coinDetailData?.marketData.totalVolume[viewModel.currencyCode] ?? 0.0
             )
 
             statisticsField(
-                text: "Circulating Supply",
+                text: viewModel.localeService.localizedString(forKey: "circulatingSupply"),
                 currencyCode: "",
                 value: viewModel.coinDetailData?.marketData.circulatingSupply ?? 0.0
             )
 
             statisticsField(
-                text: "Total Supply",
+                text: viewModel.localeService.localizedString(forKey: "totalSupply"),
                 currencyCode: "",
                 value: viewModel.coinDetailData?.marketData.totalSupply ?? 0.0
             )
 
             statisticsField(
-                text: "Max Supply",
+                text: viewModel.localeService.localizedString(forKey: "maxSupply"),
                 currencyCode: "",
                 value: viewModel.coinDetailData?.marketData.maxSupply ?? 0.0
             )

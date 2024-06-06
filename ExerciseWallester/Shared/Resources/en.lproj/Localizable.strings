@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  ExerciseWallester
+
+  Created by Denis Sinitsa on 06.06.2024.
+  
+*/
+
+// Loading View
+"loading" = "Loading...";
+
+// Market View
+"coin" = "Coin";
+"price" = "Price";
+"hour1" = "1h";
+"hours24" = "24h";
+"days7" = "7d";
+"volume24h" = "24h Volume";
+"marketCap" = "Market Cap";
+"last7Days" = "Last 7 Days";
+"priceChart" = "Price Chart";
+
+// Detail View
+"month1" = "30";
+"months3" = "90";
+"monthsMax" = "Max";
+"statistics" = "Statistics";
+"circulatingSupply" = "Circulating Supply";
+"totalSupply" = "Total Supply";
+"maxSupply" = "Max Supply";

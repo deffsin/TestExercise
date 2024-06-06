@@ -101,7 +101,7 @@ struct CoinListView: View {
                 Text("#")
                     .font(.system(size: 9))
 
-                Text("Coin")
+                Text(viewModel.localeService.localizedString(forKey: "coin"))
                     .font(.fontSemiBoldUltraSmall)
 
                 Spacer()
@@ -114,57 +114,57 @@ struct CoinListView: View {
 
     private func rightListHeader(viewModel: MarketViewModel) -> some View {
         VStack(spacing: 0) {
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 createHeaderColumn(
-                    title: "Price",
-                    maxWidth: 120,
+                    title: viewModel.localeService.localizedString(forKey: "price"),
+                    maxWidth: 115,
                     sortOption: .price,
                     sortOptionReversed: .priceReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "1h",
-                    maxWidth: 75,
+                    title: viewModel.localeService.localizedString(forKey: "hour1"),
+                    maxWidth: 70,
                     sortOption: .pricePercentage1h,
                     sortOptionReversed: .pricePercentage1hReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "24h",
-                    maxWidth: 90,
+                    title: viewModel.localeService.localizedString(forKey: "hours24"),
+                    maxWidth: 85,
                     sortOption: .pricePercentage24h,
                     sortOptionReversed: .pricePercentage24hReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "7d",
-                    maxWidth: 88,
+                    title: viewModel.localeService.localizedString(forKey: "days7"),
+                    maxWidth: 83,
                     sortOption: .pricePercentage7d,
                     sortOptionReversed: .pricePercentage7dReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "24h Volume",
-                    maxWidth: 160,
+                    title: viewModel.localeService.localizedString(forKey: "volume24h"),
+                    maxWidth: 155,
                     sortOption: .volume24h,
                     sortOptionReversed: .volume24hReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "Market Cap",
-                    maxWidth: 180,
+                    title: viewModel.localeService.localizedString(forKey: "marketCap"),
+                    maxWidth: 175,
                     sortOption: .marketCap,
                     sortOptionReversed: .marketCapReversed,
                     viewModel: viewModel
                 )
 
                 createHeaderColumn(
-                    title: "Last 7 Days",
+                    title: viewModel.localeService.localizedString(forKey: "last7Days"),
                     maxWidth: 170,
                     sortOption: .marketCap,
                     sortOptionReversed: .marketCapReversed,
@@ -196,7 +196,8 @@ struct CoinListView: View {
                 }
 
             Text(title)
-                .font(.fontSemiBoldUltraSmall)
+                .font(.fontRegularUltraSmall)
+                .lineLimit(1)
         }
         .frame(maxWidth: maxWidth, alignment: .trailing)
     }

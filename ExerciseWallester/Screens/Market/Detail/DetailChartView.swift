@@ -50,18 +50,18 @@ struct DetailChartView: View {
 
     func textHeader() -> some View {
         VStack {
-            Text("\(viewModel.name) Price Chart (\(viewModel.coinSymbol))")
+            Text("\(viewModel.name) \(viewModel.localeService.localizedString(forKey: "priceChart")) \(viewModel.coinSymbol.uppercased())")
                 .font(.fontSemiBoldUltraSmall)
         }
     }
 
     func chartSegmentedView(selectedButton: Binding<String>) -> some View {
         let buttons = [
-            ("24h", "1"),
-            ("7d", "7"),
-            ("1m", "30"),
-            ("3m", "90"),
-            ("Max", "max"),
+            (viewModel.localeService.localizedString(forKey: "hours24"), "1"),
+            (viewModel.localeService.localizedString(forKey: "days7"), "7"),
+            (viewModel.localeService.localizedString(forKey: "month1"), "30"),
+            (viewModel.localeService.localizedString(forKey: "months3"), "90"),
+            (viewModel.localeService.localizedString(forKey: "monthsMax"), "max"),
         ]
 
         return ZStack {
@@ -71,7 +71,7 @@ struct DetailChartView: View {
                 }
             }
         }
-        .frame(width: 275, height: 50)
+        .frame(width: 285, height: 50)
         .foregroundStyle(.black)
         .background(Color.blue.opacity(0.1))
         .cornerRadius(10)

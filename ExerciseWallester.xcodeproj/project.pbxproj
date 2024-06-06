@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1535C7452C11BFCA0038E406 /* LocaleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535C7442C11BFCA0038E406 /* LocaleService.swift */; };
+		1535C7622C11CA4D0038E406 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1535C7602C11CA4D0038E406 /* Localizable.strings */; };
 		15BFF5A62C10B99C0014B668 /* ExerciseWallesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFF5A52C10B99C0014B668 /* ExerciseWallesterApp.swift */; };
 		15BFF5A82C10B99C0014B668 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFF5A72C10B99C0014B668 /* ContentView.swift */; };
 		15BFF5AA2C10B99E0014B668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BFF5A92C10B99E0014B668 /* Assets.xcassets */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		1535C7442C11BFCA0038E406 /* LocaleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleService.swift; sourceTree = "<group>"; };
+		1535C7612C11CA4D0038E406 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1535C7632C11CA550038E406 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15BFF5A22C10B99C0014B668 /* ExerciseWallester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseWallester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BFF5A52C10B99C0014B668 /* ExerciseWallesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseWallesterApp.swift; sourceTree = "<group>"; };
 		15BFF5A72C10B99C0014B668 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1535C7572C11C8150038E406 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1535C7602C11CA4D0038E406 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		15BFF5992C10B99C0014B668 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +258,7 @@
 		15BFF5DC2C10BA440014B668 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1535C7572C11C8150038E406 /* Resources */,
 				15BFF5CA2C10BA440014B668 /* Assets */,
 				15BFF5CF2C10BA440014B668 /* Extensions */,
 				15BFF5D12C10BA440014B668 /* Navigation */,
@@ -299,7 +311,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = 15BFF5992C10B99C0014B668;
 			productRefGroup = 15BFF5A32C10B99C0014B668 /* Products */;
@@ -316,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1535C7622C11CA4D0038E406 /* Localizable.strings in Resources */,
 				15BFF5EC2C10BA440014B668 /* Poppins-Regular.ttf in Resources */,
 				15BFF5ED2C10BA440014B668 /* Poppins-SemiBold.ttf in Resources */,
 				15BFF5AD2C10B99E0014B668 /* Preview Assets.xcassets in Resources */,
@@ -404,6 +417,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1535C7602C11CA4D0038E406 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1535C7612C11CA4D0038E406 /* en */,
+				1535C7632C11CA550038E406 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		15BFF5AE2C10B99E0014B668 /* Debug */ = {
@@ -536,6 +561,8 @@
 				DEVELOPMENT_TEAM = XZA5R9TKBS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExerciseWallester/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs to access your location data to tell you your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -566,6 +593,8 @@
 				DEVELOPMENT_TEAM = XZA5R9TKBS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExerciseWallester/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs to access your location data to tell you your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

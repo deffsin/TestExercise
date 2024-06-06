@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  ExerciseWallester
+
+  Created by Denis Sinitsa on 06.06.2024.
+  
+*/
+
+// Loading View
+"loading" = "Загрузка...";
+
+// Market View
+"coin" = "Монета";
+"price" = "Цена";
+"hour1" = "1ч";
+"hours24" = "24ч";
+"days7" = "7д";
+"volume24h" = "Объем за 24ч";
+"marketCap" = "Рыночная капитализация";
+"last7Days" = "Последние 7 дней";
+"priceChart" = "График цены";
+
+// DetailView
+"month1" = "30д";
+"months3" = "90д";
+"monthsMax" = "Макс.";
+"statistics" = "Статистика";
+"circulatingSupply" = "В обращении";
+"totalSupply" = "Общее предложение";
+"maxSupply" = "Максимальный объем";
