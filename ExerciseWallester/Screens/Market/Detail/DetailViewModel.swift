@@ -12,12 +12,12 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
     @Published var coinDetailData: CoinDetailModel?
     @Published var coinHistoricalChartData: CoinHistoricalChartDataModel?
 
-    @Published var isLoading = false
+    @Published var isLoading = true
     @Published var id: String
     @Published var name: String
     @Published var currencyCode: String
     @Published var coinSymbol: String
-    @Published var currencySymbol: String // ex. $, €
+    @Published var currencySymbol: String
     @Published var timeframe: String = "1"
 
     private var cancellables = Set<AnyCancellable>()
@@ -32,8 +32,38 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
         self.currencySymbol = currencySymbol
         self.coinSymbol = coinSymbol
 
+        checkCachedData()
         loadInitialData()
         initializeDataFetchTimer()
+    }
+
+    func checkCachedData() {
+        CoinDataService.shared.fetchCryptoCurrencyDetails(id: id, forceUpdate: false)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in }, receiveValue: { coin in
+                self.coinDetailData = coin
+                self.checkLoadingState()
+            })
+            .store(in: &cancellables)
+
+        CoinDataService.shared.fetchCryptoCurrencyHistoricalChartData(
+            id: id,
+            currency: currencyCode,
+            timeframe: timeframe,
+            forceUpdate: false
+        )
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { _ in }, receiveValue: { data in
+            let prices = data.prices.map { $0[1] }
+            self.coinHistoricalChartData = CoinHistoricalChartDataModel(prices: prices.map { [$0] })
+            self.checkLoadingState()
+        })
+        .store(in: &cancellables)
+    }
+
+    func loadInitialData() {
+        fetchCryptoData(id: id, currencyCode: currencyCode)
+        fetchCryptoHistoricalChartData(id: id, currencyCode: currencyCode, timeframe: timeframe)
     }
 
     func initializeDataFetchTimer() {
@@ -47,12 +77,6 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
                     timeframe: self.timeframe
                 )
             }
-    }
-
-    func loadInitialData() {
-        isLoading = true
-        fetchCryptoData(id: id, currencyCode: currencyCode)
-        fetchCryptoHistoricalChartData(id: id, currencyCode: currencyCode, timeframe: timeframe)
     }
 
     func fetchCryptoData(id: String, currencyCode: String) {
@@ -69,11 +93,12 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
                 }
             }, receiveValue: { coin in
                 self.coinDetailData = coin
+                self.checkLoadingState()
             })
             .store(in: &cancellables)
     }
 
-    func fetchCachedCryptoData(id: String, currencyCode _: String) {
+    func fetchCachedCryptoData(id: String, currencyCode: String) {
         CoinDataService.shared.fetchCryptoCurrencyDetails(id: id, forceUpdate: false)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -86,6 +111,7 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
                 }
             }, receiveValue: { coin in
                 self.coinDetailData = coin
+                self.checkLoadingState()
             })
             .store(in: &cancellables)
     }
@@ -105,12 +131,12 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
                 self.fetchCachedHistoricalChartData(id: id, currencyCode: currencyCode, timeframe: timeframe)
 
             case .finished:
-                self.isLoading = false
                 print("Finished fetching crypto historical chart data")
             }
         }, receiveValue: { [weak self] data in
             let prices = data.prices.map { $0[1] }
             self?.coinHistoricalChartData = CoinHistoricalChartDataModel(prices: prices.map { [$0] })
+            self?.checkLoadingState()
         })
         .store(in: &cancellables)
     }
@@ -129,13 +155,19 @@ class DetailViewModel: ObservableObject, DetailCryptoCurrencyProtocol, TimerProt
                 print("Failed to fetch cached historical chart data: \(error)")
 
             case .finished:
-                self.isLoading = false
                 print("Finished fetching cached crypto historical chart data")
             }
         }, receiveValue: { data in
             let prices = data.prices.map { $0[1] }
             self.coinHistoricalChartData = CoinHistoricalChartDataModel(prices: prices.map { [$0] })
+            self.checkLoadingState()
         })
         .store(in: &cancellables)
+    }
+
+    func checkLoadingState() {
+        if coinDetailData != nil && coinHistoricalChartData != nil {
+            isLoading = false
+        }
     }
 }
