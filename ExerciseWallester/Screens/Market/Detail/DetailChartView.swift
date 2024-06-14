@@ -36,7 +36,7 @@ struct DetailChartView: View {
     }
 
     @ViewBuilder
-    func buildMainContent() -> some View {
+    private func buildMainContent() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
                 textHeader()
@@ -48,14 +48,14 @@ struct DetailChartView: View {
         }
     }
 
-    func textHeader() -> some View {
+    private func textHeader() -> some View {
         VStack {
             Text("\(viewModel.name) \(viewModel.localeService.localizedString(forKey: "priceChart")) \(viewModel.coinSymbol.uppercased())")
                 .font(.fontSemiBoldUltraSmall)
         }
     }
 
-    func chartSegmentedView(selectedButton: Binding<String>) -> some View {
+    private func chartSegmentedView(selectedButton: Binding<String>) -> some View {
         let buttons = [
             (viewModel.localeService.localizedString(forKey: "hours24"), "1"),
             (viewModel.localeService.localizedString(forKey: "days7"), "7"),
@@ -77,7 +77,7 @@ struct DetailChartView: View {
         .cornerRadius(10)
     }
 
-    func chartButton(label: String, timeframe: String, selectedButton: Binding<String>) -> some View {
+    private func chartButton(label: String, timeframe: String, selectedButton: Binding<String>) -> some View {
         Button(action: {
             withAnimation(.bouncy(duration: 1.0)) {
                 selectedButton.wrappedValue = label
@@ -98,7 +98,7 @@ struct DetailChartView: View {
         }
     }
 
-    func chartView() -> some View {
+    private func chartView() -> some View {
         ZStack {
             HStack {
                 if !data.isEmpty {
@@ -148,7 +148,7 @@ struct DetailChartView: View {
         .frame(maxHeight: 350)
     }
 
-    func pricesToShow() -> [Double] {
+    private func pricesToShow() -> [Double] {
         let maxPrice = data.max() ?? 0
         let minPrice = data.min() ?? 0
         let range = maxPrice - minPrice

@@ -26,7 +26,7 @@ struct DetailView: View {
     }
 
     @ViewBuilder
-    func buildMainContent() -> some View {
+    private func buildMainContent() -> some View {
         ScrollView {
             VStack(spacing: 10) {
                 if let vm = viewModel.coinDetailData {
@@ -71,7 +71,7 @@ struct DetailView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    func currencyInfoHeader(image: String, symbol: String, price: Double, rank: Int,
+    private func currencyInfoHeader(image: String, symbol: String, price: Double, rank: Int,
                             priceChangeIn24h: Double) -> some View
     {
         VStack(spacing: 7) {
@@ -121,7 +121,7 @@ struct DetailView: View {
         .frame(height: 80)
     }
 
-    func customNavBar(image: String, name: String, price: Double, priceChangeIn24h: Double) -> some View {
+    private func customNavBar(image: String, name: String, price: Double, priceChangeIn24h: Double) -> some View {
         VStack {
             HStack {
                 currencyInfoInNavBar(image: image, name: name, price: price, priceChangeIn24h: priceChangeIn24h)
@@ -137,7 +137,7 @@ struct DetailView: View {
         .padding(.horizontal, 10)
     }
 
-    func currencyInfoInNavBar(image: String, name: String, price: Double, priceChangeIn24h: Double) -> some View {
+    private func currencyInfoInNavBar(image: String, name: String, price: Double, priceChangeIn24h: Double) -> some View {
         HStack(spacing: 4) {
             HStack(spacing: 2) {
                 AsyncImage(url: URL(string: image)!)
@@ -167,7 +167,7 @@ struct DetailView: View {
         }
     }
 
-    func coinStatistics() -> some View {
+    private func coinStatistics() -> some View {
         VStack {
             HStack {
                 Text("\(viewModel.name) \(viewModel.localeService.localizedString(forKey: "statistics"))")
@@ -210,7 +210,7 @@ struct DetailView: View {
         }
     }
 
-    func statisticsField(text: String, currencyCode: String, value: Double) -> some View {
+    private func statisticsField(text: String, currencyCode: String, value: Double) -> some View {
         VStack {
             HStack {
                 Text(text)
