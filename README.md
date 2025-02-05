@@ -1,4 +1,4 @@
-# ExerciseWallester app
+# Test exercise app
 
 ❗️ READ EVERYTHING BEFORE LOOKING AT THE CODE ❗️
 
